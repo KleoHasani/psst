@@ -19,7 +19,6 @@ def tcp_scan(remote_address, port_range):
 @argument('remote_address', default="127.0.0.1")
 def cli(remote_address):
     tcp_open_ports = []
-    udp_open_ports = []
 
     # Print logo.
     clear()
