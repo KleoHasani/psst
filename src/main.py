@@ -1,45 +1,60 @@
-from click import argument, group, progressbar, clear, echo, style
-from socket import AF_INET, SOCK_STREAM, socket as Socket
+from socket import SOCK_DGRAM
+from click import argument, group, clear, echo, style
+import scan, Target
 
-
-def tcp_scan(remote_address, port_range):
-    ports = []
-    with progressbar(port_range) as bar:
-        for port in bar:
-            soc_con = Socket(AF_INET, SOCK_STREAM)
-            connection = soc_con.connect_ex((remote_address, port))
-            
-            if connection == 0:
-                ports.append(port)
-
-    return ports
-
+cat_row_1 = " _._     _,-'""`-._"
+cat_row_2 = "(,-.`._,'(       |\`-/|"
+cat_row_3 = "    `-.-' \ )-`( , o o)"
+cat_row_4 = """          `-    \`_`"'-"""
 
 @group(invoke_without_command=True)
 @argument('remote_address', default="127.0.0.1")
 def cli(remote_address):
     tcp_open_ports = []
+    udp_open_ports = []
 
     # Print logo.
     clear()
     echo(f'{style("-" * 48, fg="blue")}')
     echo(f'{style("#", fg="blue")}{" " * 46}{style("#", fg="blue")}')
     echo(f'{style("#", fg="blue")}{" " * 20} PSST {" " * 20}{style("#", fg="blue")}')
+    echo(f'{style("#", fg="blue")}{" " * 10} Port Super Scanner Tool {" " * 11}{style("#", fg="blue")}')
     echo(f'{style("#", fg="blue")}{" " * 46}{style("#", fg="blue")}')
+    echo(f'{style("#", fg="blue")}{" " * 11}{style(cat_row_1, fg="red")}{" " * 18}{style("#", fg="blue")}')
+    echo(f'{style("#", fg="blue")}{" " * 11}{style(cat_row_2, fg="red")}{" " * 12}{style("#", fg="blue")}')
+    echo(f'{style("#", fg="blue")}{" " * 11}{style(cat_row_3, fg="red")}{" " * 12}{style("#", fg="blue")}')
+    echo(f'{style("#", fg="blue")}{" " * 11}{style(cat_row_4, fg="red")}{" " * 12}{style("#", fg="blue")}')
+    echo(f'{style("#", fg="blue")}{" " * 20}By: Kleo Hasani {" " * 10}{style("#", fg="blue")}')
     echo(f'{style("-" * 48, fg="blue")}')
 
     # Perform scan.
-    tcp_open_ports = tcp_scan(remote_address, range(1, 65534))
+    tcp_target = Target.Target(remote_add=remote_address)
+    udp_target = Target.Target(ip_type=SOCK_DGRAM)
+
+
+    tcp_open_ports = scan.p_scan(tcp_target)
+    udp_open_ports = scan.p_scan(udp_target)
     
 
     # Print ports.
+    # Print ports.
     echo(f'{style("TCP Ports", fg="yellow")}')
-    for port in tcp_open_ports:
+
+    if len(tcp_open_ports) == 0:
+        echo(f'{" " * 4}{style("None", fg="red")}')
+    else:
+        for port in udp_open_ports:
             echo(f'{" " * 4}Port: {style(port, fg="green")}')
 
+    # Print ports.
     echo(f'{style("UDP Ports", fg="cyan")}')
-    for port in udp_open_ports:
+
+    if len(udp_open_ports) == 0:
+        echo(f'{" " * 4}{style("None", fg="red")}')
+    else:
+        for port in udp_open_ports:
             echo(f'{" " * 4}Port: {style(port, fg="green")}')
+
     pass
 
 
