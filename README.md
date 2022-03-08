@@ -1,5 +1,5 @@
 <div id="header" align="center">
-  <img src="https://media.giphy.com/media/oxNWcNwbWQaE8/giphy.gif" width="200"/>
+  <img src="https://media.giphy.com/media/26xBLq0QJdxy57CV2/giphy.gif" width="200"/>
 </div>
 
 ---
@@ -35,7 +35,7 @@ Port Super Scanner Tool.
 - ## Requirements
 
   - [x] Python3 v3.10
-  - [x] Potery v1.1
+  - [x] Poetry v1.1
 
 - ## Installation
 
