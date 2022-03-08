@@ -16,17 +16,16 @@ Port Super Scanner Tool.
 
 - [Getting Started](#getting-started)
   - [Requirements](#requirements)
-  - [Installation](#installation)
+  - [Setup](#setup)
     - [Clone](#clone)
     - [VENV](#venv)
-    - [Install](#install)
-    - [Start](#start)
-    - [Stop](#stop)
+    - [Activate](#activate)
+  - [Install](#install)
+  - [Start](#start)
+  - [Stop](#stop)
 - [Build](#build)
 - [Usage](#usage)
 - [Test](#test)
-- [Create Executable](#create-executable)
-- [Run Executable](#run-executable)
 
 ---
 
@@ -37,55 +36,60 @@ Port Super Scanner Tool.
   - [x] Python3 v3.10
   - [x] Poetry v1.1
 
-- ## Installation
+- ## Setup
 
-  - ### Clone
+  - Clone
 
-    ```shell
-    git clone https://github.com/KleoHasani/psst.git
-    ```
-  - #### VENV
+  ```shell
+  git clone https://github.com/KleoHasani/psst.git
+  ```
 
-    ```shell
-    poetry shell
-    ```
+  - VENV
 
-    **Set your shell to use the venv paths for Python by activating the virtual environment.**
+  ```shell
+  poetry shell
+  ```
+
+  - Activate
+
     - Windows
 
-      ```shell
-      .\.venv\Scripts\activate
-      ```
+    ```shell
+    .\.venv\Scripts\activate
+    ```
 
     - *nix
-      ```shell
-      source .venv/bin/activate
-      ```
-
-  - ### Install
-
-  ```python3
-  poetry install
-  ```
-
-- ### Start
-  ```
-  python3 psst/main.py
-  ```
-  - ### Stop
-
-    **Disable venv for the project.**
 
     ```shell
-    deactivate
+    source .venv/bin/activate
     ```
+
+- ## Install
+
+```shell
+poetry install
+```
+
+- ## Start
+
+```shell
+poetry run start
+```
+
+- ## Stop
+
+**Disable venv for the project.**
+
+```shell
+deactivate
+```
 
 ---
 
 ## Build
 
 ```shell
-
+poetry build
 ```
 
 ---
