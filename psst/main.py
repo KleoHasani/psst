@@ -29,19 +29,17 @@ def cli(remote_address):
 
     # Perform scan.
     tcp_target = Target.Target(remote_add=remote_address)
-    udp_target = Target.Target(ip_type=SOCK_DGRAM)
-
+    udp_target = Target.Target(remote_add=remote_address, ip_type=SOCK_DGRAM)
 
     tcp_open_ports = scan.p_scan(tcp_target)
     udp_open_ports = scan.p_scan(udp_target)
     
-
-    # Print ports.
     # Print ports.
     echo(f'{style("TCP Ports", fg="yellow")}')
 
     if len(tcp_open_ports) == 0:
         echo(f'{" " * 4}{style("None", fg="red")}')
+
     else:
         for port in udp_open_ports:
             echo(f'{" " * 4}Port: {style(port, fg="green")}')
@@ -51,6 +49,7 @@ def cli(remote_address):
 
     if len(udp_open_ports) == 0:
         echo(f'{" " * 4}{style("None", fg="red")}')
+
     else:
         for port in udp_open_ports:
             echo(f'{" " * 4}Port: {style(port, fg="green")}')

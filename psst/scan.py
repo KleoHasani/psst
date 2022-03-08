@@ -1,7 +1,7 @@
 from click import progressbar, echo, style
 from socket import SOCK_STREAM, socket as Socket
 from Target import Target
-    
+
 def p_scan(target: Target) -> list:
     open_ports = []
 
@@ -22,4 +22,4 @@ def p_scan(target: Target) -> list:
             if connection == 0:
                 open_ports.append(port)
 
-    return open_ports;
+    return open_ports
