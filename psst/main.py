@@ -1,6 +1,7 @@
 from socket import SOCK_DGRAM
 from click import argument, group, clear, echo, style
-import scan, Target
+from .scan import p_scan
+from .Target import Target
 
 cat_row_1 = " _._     _,-'""`-._"
 cat_row_2 = "(,-.`._,'(       |\`-/|"
@@ -28,11 +29,11 @@ def cli(remote_address):
     echo(f'{style("-" * 48, fg="blue")}')
 
     # Perform scan.
-    tcp_target = Target.Target(remote_add=remote_address)
-    udp_target = Target.Target(remote_add=remote_address, ip_type=SOCK_DGRAM)
+    tcp_target = Target(remote_add=remote_address)
+    udp_target = Target(remote_add=remote_address, ip_type=SOCK_DGRAM)
 
-    tcp_open_ports = scan.p_scan(tcp_target)
-    udp_open_ports = scan.p_scan(udp_target)
+    tcp_open_ports = p_scan(tcp_target)
+    udp_open_ports = p_scan(udp_target)
     
     # Print ports.
     echo(f'{style("TCP Ports", fg="yellow")}')
@@ -55,15 +56,3 @@ def cli(remote_address):
             echo(f'{" " * 4}Port: {style(port, fg="green")}')
 
     pass
-
-
-
-if __name__ == "__main__":
-    try:
-        cli()
-    except KeyboardInterrupt:
-        print("Interrupted")
-    except Exception as ex:
-        print(f'\033[31m \n{ex} \033[0m \n')
-    finally:
-        exit(0)

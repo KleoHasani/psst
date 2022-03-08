@@ -18,9 +18,9 @@ Port Super Scanner Tool.
   - [Requirements](#requirements)
   - [Installation](#installation)
     - [Clone](#clone)
-    - [Set-Up](#set-up)
-      - [VENV](#venv)
+    - [VENV](#venv)
     - [Install](#install)
+    - [Start](#start)
     - [Stop](#stop)
 - [Build](#build)
 - [Usage](#usage)
@@ -44,23 +44,23 @@ Port Super Scanner Tool.
     ```shell
     git clone https://github.com/KleoHasani/psst.git
     ```
-    - #### VENV
+  - #### VENV
+
+    ```shell
+    poetry shell
+    ```
+
+    **Set your shell to use the venv paths for Python by activating the virtual environment.**
+    - Windows
 
       ```shell
-      poetry shell
+      .\.venv\Scripts\activate
       ```
 
-      **Set your shell to use the venv paths for Python by activating the virtual environment.**
-      - Windows
-
-        ```shell
-        .\.venv\Scripts\activate
-        ```
-
-      - *nix
-        ```shell
-        source .venv/bin/activate
-        ```
+    - *nix
+      ```shell
+      source .venv/bin/activate
+      ```
 
   - ### Install
 
@@ -68,6 +68,10 @@ Port Super Scanner Tool.
   poetry install
   ```
 
+- ### Start
+  ```
+  python3 psst/main.py
+  ```
   - ### Stop
 
     **Disable venv for the project.**

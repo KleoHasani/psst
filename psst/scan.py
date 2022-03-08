@@ -1,6 +1,6 @@
 from click import progressbar, echo, style
 from socket import SOCK_STREAM, socket as Socket
-from Target import Target
+from .Target import Target
 
 def p_scan(target: Target) -> list:
     open_ports = []
