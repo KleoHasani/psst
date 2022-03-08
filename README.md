@@ -35,7 +35,6 @@ Port Super Scanner Tool.
 
   - [x] Python3 v3.10
   - [x] Poetry v1.1
-  - [x] PyInstaller v4.10
 
 - ## Setup
 
