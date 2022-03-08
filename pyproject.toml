@@ -16,5 +16,5 @@ pytest = "^7.0.1"
 start = "psst.main:cli"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=1.0.0", "click>=8.0.0"]
 build-backend = "poetry.core.masonry.api"
