@@ -12,7 +12,6 @@ click = "^8.0.4"
 [tool.poetry.dev-dependencies]
 pytest = "^7.0.1"
 
-
 [tool.poetry.scripts]
 start = "psst.main:cli"
 
