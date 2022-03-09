@@ -96,6 +96,10 @@ poetry build
 
 ## Usage
 
+<div align="center">
+  <img src="docs/assets/Screenshot1.png"/>
+</div>
+
 ---
 
 ## Test
