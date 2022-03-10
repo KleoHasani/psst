@@ -17,7 +17,7 @@ def cli(address: str, i: bool, u: bool, p: bool):
 
     ip_fam = AF_INET
     soc_type = SOCK_STREAM
-    port_range = [i for i in range(1, 10000)]
+    port_range = [i for i in range(1, 100)]
 
     if i:
         ip_fam = AF_INET6
