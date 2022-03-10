@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from socket import AF_INET, AddressFamily, SocketKind
 @dataclass
 class Target:
-    remote_add: str
+    address: str
     ports: list
-    ip_type: SocketKind
+    soc_type: SocketKind
     ip_fam: AddressFamily = AF_INET

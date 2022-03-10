@@ -10,25 +10,27 @@ from .Target import Target
 @option("-i", default=False, is_flag=True, help="Is IPv6?")
 @option("-u", default=False, is_flag=True, help="Is UDP?")
 @option("-p", default=False, is_flag=True, help="Try all ports? (1 - 65353)")
-@argument('remote_address', default="127.0.0.1")
-def cli(remote_address, i, u, p):
+@argument('address', default="127.0.0.1")
+def cli(address: str, i: bool, u: bool, p: bool):
     # Print logo.
     draw_logo()
 
     ip_fam = AF_INET
-    ip_type = SOCK_STREAM
+    soc_type = SOCK_STREAM
     port_range = [i for i in range(1, 10000)]
 
     if i:
         ip_fam = AF_INET6
     
     if u:
-        ip_type = SOCK_DGRAM
+        soc_type = SOCK_DGRAM
     
     if p:
         port_range = [i for i in range(1, 65535)]
 
     # Scan target and Print TCP ports.
-    p_print(p_scan(Target(remote_address, port_range, ip_fam, ip_type)))
+    target = Target(address, port_range, ip_fam, soc_type)
+    scan = p_scan(target)
+    p_print(scan)
 
     pass

@@ -1,29 +1,31 @@
-from click import progressbar, echo, style
-from socket import SOCK_STREAM, socket as Socket
+import socket
 from .Target import Target
+
+# Attempt Socket connection.
+def connect(soc: socket.socket, add: str, port: int) -> bool:
+    is_open = True
+
+    # Connect.
+    try:
+        soc.connect((add, port))
+    except:
+        is_open = False
+    
+    # Close connection.
+    soc.close()
+    return is_open
 
 # Perform scan.
 def p_scan(target: Target) -> list:
-    open_ports = []
+    # Open ports list.
+    open_ports: list = []
 
-    # Label.
-    ip_type = "TCP Scan" if target.ip_type == SOCK_STREAM else "UDP Scan"
-    echo(f'{style(str(ip_type), fg="red")}')
+    # Create socket object.
+    soc: socket.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    ip_add = socket.gethostbyname(target.address)
 
-    # Progress bar.
-    with progressbar(target.ports) as bar:
-        for port in bar:
-            connection = None
-            # Create soccet.
-            soc = Socket(target.ip_fam, target.ip_type)
-            try:
-                # Create connection.
-                connection = soc.connect((target.remote_add, port))
-            except:
-                pass
+    for port in target.ports:
+        if connect(soc, ip_add, port):
+            open_ports.append(port)
             
-            if connection == 0:
-                # Open connection ports added to open_ports var.
-                open_ports.append(port)
-
     return open_ports
