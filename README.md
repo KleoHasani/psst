@@ -2,7 +2,6 @@
   <img src="https://media.giphy.com/media/26xBLq0QJdxy57CV2/giphy.gif" width="200"/>
 </div>
 
----
 
 # PSST
 
